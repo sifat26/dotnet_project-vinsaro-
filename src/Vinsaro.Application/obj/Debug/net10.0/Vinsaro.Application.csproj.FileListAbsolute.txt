@@ -1,0 +1,15 @@
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\bin\Debug\net10.0\Vinsaro.Application.deps.json
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\bin\Debug\net10.0\Vinsaro.Application.dll
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\bin\Debug\net10.0\Vinsaro.Application.pdb
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\bin\Debug\net10.0\Vinsaro.Domain.dll
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\bin\Debug\net10.0\Vinsaro.Domain.pdb
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro.Application.csproj.AssemblyReference.cache
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro.Application.GeneratedMSBuildEditorConfig.editorconfig
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro.Application.AssemblyInfoInputs.cache
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro.Application.AssemblyInfo.cs
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro.Application.csproj.CoreCompileInputs.cache
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro..7451433C.Up2Date
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro.Application.dll
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\refint\Vinsaro.Application.dll
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\Vinsaro.Application.pdb
+G:\Dotnet\Vinsaro\src\Vinsaro.Application\obj\Debug\net10.0\ref\Vinsaro.Application.dll

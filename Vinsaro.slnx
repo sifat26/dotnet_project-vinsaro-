@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Vinsaro.Api/Vinsaro.Api.csproj" />
+    <Project Path="src/Vinsaro.Application/Vinsaro.Application.csproj" />
+    <Project Path="src/Vinsaro.Domain/Vinsaro.Domain.csproj" />
+    <Project Path="src/Vinsaro.Infrastructure/Vinsaro.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Vinsaro.IntegrationTests/Vinsaro.IntegrationTests.csproj" />
+    <Project Path="tests/Vinsaro.UnitTests/Vinsaro.UnitTests.csproj" />
+  </Folder>
+</Solution>

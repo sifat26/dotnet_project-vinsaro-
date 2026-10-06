@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "vinsaro-api-postman-collection",
+		"name": "Vinsaro API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Auth",
+			"item": [
+				{
+					"name": "Init Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Auth/init-admin",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Auth", "init-admin"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"masterKey\": \"vinsaro-super-secret-master-key-2024\",\n  \"email\": \"admin@vinsaro.com\",\n  \"password\": \"Password123!\",\n  \"fullName\": \"System Admin\",\n  \"phoneNumber\": \"01711000000\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Login (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if(jsonData.token) {",
+									"    pm.environment.set(\"jwt_token\", jsonData.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Auth", "login"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@vinsaro.com\",\n  \"password\": \"Password123!\"\n}"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Catalog Setup",
+			"item": [
+				{
+					"name": "Create Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"categoryId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Categories",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Categories"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Men's Shirts\",\n  \"description\": \"High quality shirts for men\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Create Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"productId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Products",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Products"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"categoryId\": \"{{categoryId}}\",\n  \"name\": \"Premium Cotton Oxford Shirt\",\n  \"description\": \"Classic oxford shirt perfect for any occasion.\",\n  \"brand\": \"Vinsaro Originals\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Add Variant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"variantId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Products/{{productId}}/variants",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Products", "{{productId}}", "variants"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sku\": \"OXF-BLU-L\",\n  \"price\": 1250.00,\n  \"stockQuantity\": 50,\n  \"color\": \"Blue\",\n  \"size\": \"L\"\n}"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Cart & Checkout",
+			"item": [
+				{
+					"name": "Add to Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Cart/items",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Cart", "items"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productVariantId\": \"{{variantId}}\",\n  \"quantity\": 2\n}"
+						}
+					}
+				},
+				{
+					"name": "Create Address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"addressId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Addresses",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Addresses"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fullName\": \"John Doe\",\n  \"phoneNumber\": \"01711223344\",\n  \"addressLine1\": \"House 12, Road 5\",\n  \"area\": \"Bashundhara\",\n  \"district\": \"Dhaka\",\n  \"division\": \"Dhaka\",\n  \"postalCode\": \"1229\",\n  \"isDefault\": true\n}"
+						}
+					}
+				},
+				{
+					"name": "Checkout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"orderId\", jsonData.orderId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Checkout",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Checkout"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"shippingAddressId\": \"{{addressId}}\",\n  \"customerNotes\": \"Please deliver in the evening.\"\n}"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Operations",
+			"item": [
+				{
+					"name": "Pay (Cash on Delivery)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" },
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Payments",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Payments"]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"paymentMethod\": 2\n}"
+						}
+					}
+				},
+				{
+					"name": "Get Sales Report",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Reports/sales",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "Reports", "sales"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}

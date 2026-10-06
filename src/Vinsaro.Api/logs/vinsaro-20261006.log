@@ -1,0 +1,8 @@
+2026-10-06 22:06:55.657 +06:00 [INF] Vinsaro API started on http://localhost:5178
+2026-10-06 22:06:55.726 +06:00 [INF] User profile is available. Using 'C:\Users\sifat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-06 22:06:55.744 +06:00 [INF] Creating key {be826b73-b23f-477e-9e8b-abd2f943ec98} with creation date 2026-10-06 16:06:55Z, activation date 2026-10-06 16:06:55Z, and expiration date 2027-01-04 16:06:55Z.
+2026-10-06 22:06:55.766 +06:00 [INF] Writing data to file 'C:\Users\sifat\AppData\Local\ASP.NET\DataProtection-Keys\key-be826b73-b23f-477e-9e8b-abd2f943ec98.xml'.
+2026-10-06 22:06:55.916 +06:00 [INF] Now listening on: http://localhost:5178
+2026-10-06 22:06:55.921 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-06 22:06:55.922 +06:00 [INF] Hosting environment: Development
+2026-10-06 22:06:55.923 +06:00 [INF] Content root path: G:\Dotnet\Vinsaro\src\Vinsaro.Api
